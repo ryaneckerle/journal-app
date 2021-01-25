@@ -8,15 +8,18 @@ let calculator = require('./controllers/calculatorcontroller');
 // app.use('/test', function(req, res) {
 //   res.send('This is a message from the test endpoint on the server');
 // })
-app.use(express.json());
+
 // app.use('/ryan', function(req, res) {
 //   res.send('My name is Ryan and I\'m 39 years old.');
 // })
 
 sequelize.sync();
-//sequelize({force: true});
+//sequelize.sync({force: true});
 // Allows server to accept json and convert to an object that can be used in the controller
-app.use('/calculator', calculator);
+//app.use('/calculator', calculator);
+app.use(require('./middleware/headers'));
+
+app.use(express.json());
 
 app.use('/user', user);
 // Have endpoint of journal/practice
